@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PagesModule,
     NgbModule
   ],
   providers: [],
