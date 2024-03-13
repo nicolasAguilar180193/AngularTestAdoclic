@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { environment } from 'src/environments/environment';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,7 @@ export class UserService {
     localStorage.setItem('token', token );
   }
 
-  login(formData: LoginForm) {
-
+  login(formData: LoginForm): Observable<any> {
     return this.http.post(`${ this.baseUrl }/login`, {
       username: formData.email,
       password: formData.password    
