@@ -1,0 +1,32 @@
+.login-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	width: 500px;
+	border: 1px solid #ccc;
+	padding: 3rem 2rem;
+	border-radius: 8px;
+	margin-top: 2rem;
+}
+
+.login-form img {
+	border-radius: 50%;
+    width: 165px;
+    height: 155px;
+	margin-bottom: 1rem;
+}
+
+.login-form p {
+	text-align: center;
+	font-size: .8rem;
+}
+

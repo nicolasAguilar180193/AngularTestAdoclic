@@ -1,1 +1,38 @@
-<p>login works!</p>
+
+<div class="login-container">
+	<h2>Login Form</h2>
+	<p>Angular Demo</p>
+
+	<div class="login-form">
+
+		<img src="../../../assets/images/linux-pinguin.jpg">
+
+		<form *ngIf="form" [formGroup]="form" class="px-4 py-3 w-100" (ngSubmit)="onSubmit()">
+			<div class="mb-3">
+				<input
+					formControlName="email"
+					type="email"
+					class="form-control"
+					id="email"
+					placeholder="Email"
+					autocomplete="username"
+				/>
+			</div>
+			<div class="mb-3">
+				<input
+					formControlName="password"
+					type="password"
+					class="form-control"
+					id="password"
+					placeholder="Password"
+				/>
+			</div>
+			<p class="text-danger">{{ message }}</p>
+			<button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid || sending">
+				<span *ngIf="sending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+				Login
+			</button>
+		</form>
+		<p>user: <strong>user@demo.com</strong> pass: <strong>123456</strong></p>
+	</div>
+</div>
