@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
 import { ProductService } from './product.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -49,11 +47,8 @@ describe('ProductService', () => {
         }
       },
     ]
-    service.getAllProducts().subscribe((event: HttpEvent<any>) => {
-      switch(event.type) {
-        case HttpEventType.Response:
-          expect(event.body).toEqual(mockProducts);
-      }
+    service.getAllProducts().subscribe((resp) => {
+      expect(resp).toEqual(mockProducts);
     });
 
     const mockReq = httpMock.expectOne(service.baseUrl);
@@ -104,5 +99,20 @@ describe('ProductService', () => {
     expect(req.request.responseType).toEqual('json');
 
     req.flush({});
+  });
+
+  it('should get categories', () => {
+    const mockCategories = [
+      "electronics",
+      "jewelery"
+    ];
+    service.getAllCategories().subscribe((resp) => {
+      expect(resp).toEqual(mockCategories);
+    });
+
+    const mockReq = httpMock.expectOne(service.baseUrl + '/categories');
+    expect(mockReq.request.method).toBe('GET');
+    expect(mockReq.request.responseType).toEqual('json');
+    mockReq.flush(mockCategories);
   });
 });
