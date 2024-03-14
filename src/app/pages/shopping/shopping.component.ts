@@ -62,7 +62,6 @@ export class ShoppingComponent implements OnInit{
     this._productService.getAllProducts(options).subscribe(
       (data) => {
         this.products = data;
-        console.log('Products:', this.products);
       },
       (error) => {
         console.error('Error fetching products:', error);
@@ -74,7 +73,6 @@ export class ShoppingComponent implements OnInit{
     this._productService.getAllCategories().subscribe(
       (data) => {
         this.categories = [...this.categories, ...data];
-        console.log('Categories:', this.categories);
       },
       (error) => {
         console.error('Error fetching categories:', error);
@@ -83,8 +81,6 @@ export class ShoppingComponent implements OnInit{
   }
 
   openModalDetails(product: Product) {
-    console.log(product);
-
     const modalRef = this.modalService.open(ProductDetailComponent, {centered: true});
     modalRef.componentInstance.product = product;
   }
