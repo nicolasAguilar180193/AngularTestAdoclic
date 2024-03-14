@@ -4,7 +4,7 @@ import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserService } from 'src/app/services/user.service';
-import { of, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

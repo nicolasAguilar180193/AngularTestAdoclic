@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShoppingComponent } from './shopping/shopping.component';
-import { PagesComponent } from './pages.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
+
+import { PagesComponent } from './pages.component';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 
 
@@ -15,7 +18,8 @@ import { AppRoutingModule } from '../app-routing.module';
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbDropdownModule
   ],
   exports: [
     ShoppingComponent,

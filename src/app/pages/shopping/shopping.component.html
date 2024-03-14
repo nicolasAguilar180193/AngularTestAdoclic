@@ -1,1 +1,72 @@
-<p>shopping works!</p>
+<app-header></app-header>
+
+<div class="container">
+	<div class="row p-3">
+		<h2>Products List</h2>
+	</div>
+	<div class="row p-3">
+		<div class="col-1 align-self-center filter-title">
+			Category
+		</div>	
+		<div class="col-2">
+			<div ngbDropdown class="d-inline-block">
+				<button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+					{{ categorySelected }}
+				</button>
+				<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+					<button 
+						*ngFor="let category of categories"
+						ngbDropdownItem
+						(click)="setCategory(category)"
+					>
+						{{ category }}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-1 align-self-center filter-title">
+			Limit
+		</div>
+		<div class="col">
+			<div ngbDropdown class="d-inline-block">
+				<button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+					{{ limitSelected }}
+				</button>
+				<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+					<button
+						*ngFor="let limit of limit"
+						ngbDropdownItem
+						(click)="setLimit(limit)"	
+					>
+						{{ limit }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row p-4">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Title</th>
+					<th scope="col">Category</th>	
+					<th scope="col">Price</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let product of products; index as i">
+					<th scope="row">{{ product.id }}</th>
+					<td>{{ product.title }}</td>
+					<td>{{ product.category }}</td>
+					<td>{{ product.price }}</td>
+					<td>
+						<button class="btn btn-primary" (click)="openModalDetails(product)">open</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>
