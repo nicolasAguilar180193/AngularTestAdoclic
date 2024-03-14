@@ -26,8 +26,34 @@ describe('UserService', () => {
   });
 
   it('should save the token to local storage on successful login', () => {
+    const mockToken = 'token_test';
+    localStorage.removeItem('token');
+    const formData: LoginForm = {
+      email: "test@example.com",
+      password: "password123"
+    }
+    service.login(formData).subscribe();
+    const mockReq = httpMock.expectOne(`${service.baseUrl}/login`);
+    mockReq.flush({token : mockToken});
+    expect(localStorage.getItem('token')).toEqual(mockToken);
+  });
+
+  it('should return true if authenticated user is logged in', () => {
+    const mockToken = 'token_test';
+    localStorage.removeItem('token');
+    const formData: LoginForm = {
+      email: "test@example.com",
+      password: "password123"
+    }
+    service.login(formData).subscribe();
+
+    const mockReq = httpMock.expectOne(`${service.baseUrl}/login`);
+    mockReq.flush({token : mockToken});
+    expect(service.isAuthenticatedUser()).toEqual(true);
+  });
+
+  it('should return false after logout and remove token from local storage', () => {
       const mockToken = 'token_test';
-      localStorage.removeItem('token');
       const formData: LoginForm = {
         email: "test@example.com",
         password: "password123"
@@ -35,7 +61,10 @@ describe('UserService', () => {
       service.login(formData).subscribe();
       const mockReq = httpMock.expectOne(`${service.baseUrl}/login`);
       mockReq.flush({token : mockToken});
-      expect(localStorage.getItem('token')).toEqual(mockToken);
-    });
-  
+
+      service.logout();
+      expect(service.isAuthenticatedUser()).toEqual(false);
+      expect(localStorage.getItem('token')).toEqual(null);
+  });
+
 });

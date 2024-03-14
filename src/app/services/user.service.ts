@@ -9,6 +9,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class UserService {
   baseUrl: string = environment.baseUrl + 'auth';
+  private isAuthenticated: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +28,17 @@ export class UserService {
     }).pipe(
         tap( (resp: any) => {
           this.saveLocalStorage( resp.token );
+          this.isAuthenticated = true;
         })
       );
+  }
+
+  isAuthenticatedUser(): boolean {
+    return this.isAuthenticated;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.isAuthenticated = false;
   }
 }
