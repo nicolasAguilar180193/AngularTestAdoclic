@@ -7,13 +7,15 @@ import { AppRoutingModule } from '../app-routing.module';
 
 import { PagesComponent } from './pages.component';
 import { ShoppingComponent } from './shopping/shopping.component';
+import { ProductDetailComponent } from './shopping/components/product-detail/product-detail.component';
 
 
 
 @NgModule({
   declarations: [
     ShoppingComponent,
-    PagesComponent
+    PagesComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

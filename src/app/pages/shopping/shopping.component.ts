@@ -1,8 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product.interface';
 import { ProductService } from 'src/app/services/product.service';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductRequestOptions } from 'src/app/interfaces/product-request-options.interface';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+
+
+// @Component({
+// 	selector: 'ngbd-modal-content',
+// 	standalone: true,
+// 	template: `
+// 		<div class="modal-header">
+// 			<h4 class="modal-title">{{ product?.title }}</h4>
+// 			<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+// 		</div>
+// 		<div class="modal-body text-center">
+//       <img style="width: 65%;" src="{{ product?.image }}" alt=""/>
+//       <p>{{ product?.category }}</p>
+// 			<p>Hello, {{ product?.description }}!</p>
+//       <p>Price: {{ product?.price }}</p>
+// 		</div>
+// 	`,
+// })
+// export class NgbdModalContent {
+//   @Input() product: Product | undefined;
+
+// 	constructor(public activeModal: NgbActiveModal) {}
+// }
+
 
 @Component({
   selector: 'app-shopping',
@@ -17,7 +42,8 @@ export class ShoppingComponent implements OnInit{
   categorySelected: string = 'all';
 
   constructor(
-    private _productService: ProductService
+    private _productService: ProductService,
+    private modalService: NgbModal
   ) { }
   
 
@@ -58,13 +84,14 @@ export class ShoppingComponent implements OnInit{
 
   openModalDetails(product: Product) {
     console.log(product);
+
+    const modalRef = this.modalService.open(ProductDetailComponent, {centered: true});
+    modalRef.componentInstance.product = product;
   }
 
   setCategory(category: string) {
     this.categorySelected = category;
     this.getProducts();
-
-    console.log(this.categorySelected);
   }
 
   setLimit(limit: number) {

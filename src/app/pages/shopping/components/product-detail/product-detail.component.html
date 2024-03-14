@@ -1,0 +1,13 @@
+<div class="modal-header">
+	<h5 class="modal-title">{{ product?.title }}</h5>
+	<button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body text-center">
+	<img class="w-50 m-4"  src="{{ product?.image }}" alt="" />
+	<p>{{ product?.category }}</p>
+	<p>{{ product?.description }}!</p>
+	<div class="col">
+		<p class="float-start">Price</p>
+		<p class="float-end"> {{ product?.price }}</p>
+	</div>
+</div>
