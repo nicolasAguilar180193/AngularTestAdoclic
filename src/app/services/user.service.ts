@@ -11,7 +11,9 @@ export class UserService {
   baseUrl: string = environment.baseUrl + 'auth';
   private isAuthenticated: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.isAuthenticated = !!localStorage.getItem('token');
+  }
 
   get token(): string {
     return localStorage.getItem('token') || '';
